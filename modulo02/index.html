@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <script src="../vue.js"></script>
+    
+
+    <title>modulo 02</title>
+</head>
+<body>
+    <div id="app">
+        <h1 v-once >{{title}}</h1>
+        <p>{{ sayHello() }} - <a v-bind:href="link" target="_blank">Google</a></p>
+        <hr>
+        <p v-html="finishedLink"></p>
+    </div>
+
+
+    
+    <script>
+        var app = new Vue({
+            el:'#app',
+            data:{
+                title: 'Hello World!',
+                link: 'http://google.com',
+                finishedLink: '<a href="http://google.com" target="_blank">Google <small>(finishedLink)</small></a>'
+            } ,
+            methods:{
+                sayHello : function(){
+                    this.title = "Titulo Alterado"
+                    return this.title;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
