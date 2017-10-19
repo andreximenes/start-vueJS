@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" 
+    integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
+    <script src="../vue.js"></script>
+    
+
+    <title>modulo 01</title>
+</head>
+<body>
+
+    <div id="app" style="padding:25px" >
+    <h3>Lista com v-for</h3>
+
+    <table class="pure-table pure-table-horizontal">
+        <thead>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Ação</th>
+        </thead>
+        <tbody>
+            <tr v-for="fruta in frutas">
+                <td>{{ fruta.id }}</td>
+                <td>{{ fruta.nome }}</td>
+                <td>
+                    <button class="button-xsmal" @click="remover(fruta.id)">Apagar</button>
+                </td>
+            </tr>
+        </tbody>        
+    </table>
+   
+    <hr/>   
+    
+    <!--h3>Data Biding</h3>
+    <p>
+        <strong>O texto aparecerá aqui:</strong> 
+        {{ texto }}
+    </p>
+    <input type="text" v-model="texto" />
+    <hr/-->
+    
+    <h3>Métodos</h3>
+    <span>Incluir: </span>
+    <input type="text" v-model="inputFruta" />
+    <button v-on:click="addFruta">Incluir Fruta</button>
+    
+    <p>
+        <button v-on:click="tamanhoLista">Ve tamanho Lista</button>
+    </p>
+
+    
+    
+    </div>   
+
+
+    
+    <script>
+        var app = new Vue({
+	        el: '#app',
+            data:{
+                frutas:[
+                    {id: 1 , nome: 'Laranja'},
+                    {id: 2 , nome: 'Manga'},
+                    {id: 3 , nome: 'Abacaxi'},
+                    {id: 4 , nome: 'Uva'}
+                ],
+                texto: 'Digite algo abaixo...',
+                inputFruta: '',
+            },
+            methods:{
+                addFruta: function() {
+                    if (this.inputFruta.trim() != '') {                       
+                        this.frutas.push({nome: this.inputFruta, id: this.frutas.length+1});
+                        this.inputFruta = '';
+                        this.inputFruta.focus;
+                    }    	 
+                },
+                remover: function(frutaId) {
+                    for (i=0; i<this.frutas.length; i++){
+                        id = this.frutas[i].id;
+                        if (id == frutaId){
+                            this.frutas.splice(i, 1);
+                            break;
+                        }
+                    }                   
+                },
+
+                tamanhoLista: function(){
+                    alert(this.frutas.length);
+                }
+            }
+  
+        });
+    </script>
+</body>
+</html>
